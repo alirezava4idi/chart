@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    
+</head>
+<body>
+    <canvas id="chart" width="40", height="40"></canvas>
+    <div class="data" ></div>
+</body>
+<script>
+        let data = {
+            dist: [],
+            steer: [],
+            time: []
+        }
+
+        for(let i = 0; i < 10; i++){
+            data.time.push(i);
+            data.dist.push(i * 2);
+            data.steer.push(i ** 2);
+        }
+
+        console.log(data)
+
+        let ctx = document.getElementById('chart').getContext('2d');
+        let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.time,
+                datasets: [{
+                    label: 'distance',
+                    data: data.dist,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 1
+                }, 
+                {
+                    label: 'steer',
+                    data: data.steer,
+                    backgroundColor: [
+                        'rgba(255, 99, 0, 0.2)',
+                        
+                    ],
+                    borderColor: [
+                        'rgba(1, 99, 132, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        
+    </script>
+</html>
